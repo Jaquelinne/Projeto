@@ -46,7 +46,92 @@ public class Tela extends JFrame {
 	 */
 	public Tela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1100, 700);
+		setBounds(100, 100, 1100, 609);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnArquivo = new JMenu("Arquivo");
+		menuBar.add(mnArquivo);
+		
+		JMenu mnEfeitos = new JMenu("Efeitos");
+		menuBar.add(mnEfeitos);
+		
+		JMenuItem mntmNegativo = new JMenuItem("Negativo");
+		mnEfeitos.add(mntmNegativo);
+		
+		JMenuItem media = new JMenuItem("M\u00E9dia");
+		mnEfeitos.add(media);
+		
+		JMenuItem mediana = new JMenuItem("Mediana");
+		mnEfeitos.add(mediana);
+		
+		JMenuItem passa_alta = new JMenuItem("Passa alta");
+		mnEfeitos.add(passa_alta);
+		
+		JMenuItem passa_baixa = new JMenuItem("Passa baixa");
+		mnEfeitos.add(passa_baixa);
+		
+		JMenuItem prewitt = new JMenuItem("Prewitt");
+		mnEfeitos.add(prewitt);
+		
+		JMenuItem sobel = new JMenuItem("Sobel");
+		mnEfeitos.add(sobel);
+		
+		JMenuItem gradiente = new JMenuItem("Gradiente");
+		mnEfeitos.add(gradiente);
+		
+		JMenuItem mntmGradienteCruzado = new JMenuItem("Gradiente Cruzado");
+		mnEfeitos.add(mntmGradienteCruzado);
+		
+		JMenu mnOperaesMatemticas = new JMenu("Opera\u00E7\u00F5es Matem\u00E1ticas");
+		menuBar.add(mnOperaesMatemticas);
+		
+		JMenuItem soma = new JMenuItem("Soma");
+		mnOperaesMatemticas.add(soma);
+		
+		JMenuItem subtracao = new JMenuItem("Subtra\u00E7\u00E3o");
+		mnOperaesMatemticas.add(subtracao);
+		
+		JMenuItem multiplicacao = new JMenuItem("Multiplica\u00E7\u00E3o");
+		mnOperaesMatemticas.add(multiplicacao);
+		
+		JMenuItem mntmDiviso = new JMenuItem("Divis\u00E3o");
+		mnOperaesMatemticas.add(mntmDiviso);
+		
+		JMenu mnOperaesLgicas = new JMenu("Opera\u00E7\u00F5es L\u00F3gicas");
+		menuBar.add(mnOperaesLgicas);
+		
+		JMenuItem and = new JMenuItem("And");
+		mnOperaesLgicas.add(and);
+		
+		JMenuItem or = new JMenuItem("Or");
+		mnOperaesLgicas.add(or);
+		
+		JMenuItem xor = new JMenuItem("Xor");
+		mnOperaesLgicas.add(xor);
+		
+		JMenu mnOperaesGeomtricas = new JMenu("Opera\u00E7\u00F5es Geom\u00E9tricas");
+		menuBar.add(mnOperaesGeomtricas);
+		
+		JMenuItem escala_mais = new JMenuItem("Escala +");
+		mnOperaesGeomtricas.add(escala_mais);
+		
+		JMenuItem escala_menos = new JMenuItem("Escala -");
+		mnOperaesGeomtricas.add(escala_menos);
+		
+		JMenuItem rotacao_direita = new JMenuItem("Rota\u00E7\u00E3o \u00E0 direita");
+		mnOperaesGeomtricas.add(rotacao_direita);
+		
+		JMenuItem rotacao_esquerda = new JMenuItem("Rota\u00E7\u00E3o \u00E0 Esquerda");
+		mnOperaesGeomtricas.add(rotacao_esquerda);
+		
+		JMenuItem cisalhamento = new JMenuItem("Cisalhamento");
+		mnOperaesGeomtricas.add(cisalhamento);
+		
+		JMenu mnAjuda = new JMenu("Ajuda");
+		menuBar.add(mnAjuda);
+		
 		painelPrincipal = new JPanel();
 		painelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(painelPrincipal);
@@ -54,7 +139,7 @@ public class Tela extends JFrame {
 		
 		JPanel painel1 = new JPanel();
 		painel1.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		painel1.setBounds(45, 38, 303, 256);
+		painel1.setBounds(42, 122, 303, 256);
 		painelPrincipal.add(painel1);
 		painel1.setLayout(null);
 		
@@ -78,12 +163,12 @@ public class Tela extends JFrame {
 				}
 			}
 		});
-		btAbrirImagem1.setBounds(133, 305, 131, 33);
+		btAbrirImagem1.setBounds(117, 403, 131, 33);
 		painelPrincipal.add(btAbrirImagem1);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		panel.setBounds(45, 349, 303, 256);
+		panel.setBounds(384, 122, 303, 256);
 		painelPrincipal.add(panel);
 		panel.setLayout(null);
 		
@@ -105,12 +190,12 @@ public class Tela extends JFrame {
 				}
 			}
 		});
-		btAbrirImagem2.setBounds(133, 617, 131, 33);
+		btAbrirImagem2.setBounds(481, 403, 131, 33);
 		painelPrincipal.add(btAbrirImagem2);
 		
 		JPanel painel_Resultado = new JPanel();
 		painel_Resultado.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		painel_Resultado.setBounds(717, 38, 256, 256);
+		painel_Resultado.setBounds(729, 122, 303, 256);
 		painelPrincipal.add(painel_Resultado);
 		painel_Resultado.setLayout(null);
 		
@@ -120,49 +205,8 @@ public class Tela extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Imagem Resultado");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(783, 307, 163, 24);
+		lblNewLabel.setBounds(820, 405, 163, 24);
 		painelPrincipal.add(lblNewLabel);
-		
-		JComboBox box_opcoes = new JComboBox();
-		box_opcoes.setModel(new DefaultComboBoxModel(new String[] {"Aplica\u00E7\u00F5es", "Soma", "Subtra\u00E7\u00E3o", "Multiplica\u00E7\u00E3o", "Divis\u00E3o", "Or", "And", "Xor"}));
-		box_opcoes.setBounds(431, 117, 203, 24);
-		painelPrincipal.add(box_opcoes);
-		
-		JButton bt_Operacao = new JButton("Aplicar Opera\u00E7\u00E3o");
-		bt_Operacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Aplica\u00E7\u00F5es"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Soma"){
-					JOptionPane.showMessageDialog(null, "ok");
-				//	BufferedImage imagemResultado = om.soma(imagem1, imagem2);
-					//lbl_resultado.setIcon(new ImageIcon(imagemResultado.toString()));
-					//lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
-					
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Subtra\u00E7\u00E3o"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Multiplica\u00E7\u00E3o"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Divis\u00E3o"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Or"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "And"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-				if (String.valueOf(box_opcoes.getSelectedItem())  == "Xor"){
-					JOptionPane.showMessageDialog(null, "ok");
-				}
-			}
-		});
-		bt_Operacao.setBounds(469, 191, 140, 23);
-		painelPrincipal.add(bt_Operacao);
 		
 		
 		
