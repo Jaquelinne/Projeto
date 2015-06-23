@@ -7,13 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import view.Tela_Resultado;
+
 public class Efeitos {
 	
+	Tela_Resultado exibir;
 	public Efeitos(){
 		
 	}
 	
-	public BufferedImage Negativo (BufferedImage imagem){
+	public void Negativo (BufferedImage imagem){
 		//Criar uma imagem de Buffer para receber manipulações
 		
 		BufferedImage imagem_negativa = new BufferedImage(imagem.getWidth(), imagem.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -31,18 +34,8 @@ public class Efeitos {
 			}
 			
 		}
-		JFrame j = new JFrame();
-		j.setVisible(true);
-		j.setSize(300, 300);
-		j.setTitle("Imagem Negativo");
-		JPanel p = new JPanel();
-		j.add(p);
-		p.setSize(300, 300);
-		JLabel l = new JLabel();
-		p.add(l);
-		l.setSize(300, 300);
-		l.setIcon(new ImageIcon(imagem_negativa));
-		return imagem_negativa;
+		exibir = new Tela_Resultado(imagem_negativa, "Imagem Negativa");
+				
 	}
 
 	private int geraNivelCinza(int valor) {

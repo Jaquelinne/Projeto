@@ -74,32 +74,9 @@ public class Tela extends JFrame {
 		mnEfeitos.add(mntmNegativo);
 		mntmNegativo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				BufferedImage imagem_negativo = null;
-				imagem_negativo = efeitos.Negativo(imag.getIm1());
-				
-			/*	for (int y = 0; y < imagem_negativo.getHeight(); y++) {
-					for (int x = 0; x < imagem_negativo.getWidth(); x++) {
-						System.out.print(imagem_negativo.getRGB(y, x));
-					}
-					System.out.println();
-				}*/
-				 
-				//Object i_negativo2 = imagem_negativo;
-				File i_negativo = null;
-				try{
-					//ImageIO.write(imagem_negativo, ".jpg", new File("c:\\lena.jpg"));
-					//i_negativo = (File) ImageIO.createImageOutputStream(i_negativo2);
-					//Icon icon = (Icon) imagem_negativo;
-					//lbl_resultado.setIcon(icon);
-					//lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
-				}catch(Exception e){
-					System.out.println("Erro 2");
-				}
-				//System.out.println(i_negativo);
-				//String caminho = "c:\\lena.jpg";
-				//lbl_resultado.setIcon(new ImageIcon(caminho.toString()));
-				//lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
-				
+							
+				efeitos.Negativo(imag.getIm1());
+							
 			}
 			
 		});
