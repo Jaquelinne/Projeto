@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.IconView;
 
 import java.awt.Color;
 
@@ -33,6 +34,8 @@ public class Tela extends JFrame {
 	
 	Efeitos efeitos = new Efeitos();
 	Imagem imag = new Imagem();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -73,7 +76,6 @@ public class Tela extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				BufferedImage imagem_negativo = null;
 				imagem_negativo = efeitos.Negativo(imag.getIm1());
-				
 				lbl_resultado.setIcon(new ImageIcon(imagem_negativo.toString()));
 				lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
 				
@@ -190,8 +192,9 @@ public class Tela extends JFrame {
 					}catch(Exception e){
 						System.out.println("Erro");
 					}
-					imag.setIm1(im1);
-					lbl_imagem1.setIcon(new ImageIcon(im1.toString()));
+					imag.setIm1(im1); //Guarda imagem
+													
+					lbl_imagem1.setIcon(new ImageIcon(imagem1.toString()));
 					lbl_imagem1.setHorizontalAlignment(JLabel.CENTER);
 				}
 			}
