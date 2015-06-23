@@ -76,8 +76,29 @@ public class Tela extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				BufferedImage imagem_negativo = null;
 				imagem_negativo = efeitos.Negativo(imag.getIm1());
-				lbl_resultado.setIcon(new ImageIcon(imagem_negativo.toString()));
-				lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
+				
+			/*	for (int y = 0; y < imagem_negativo.getHeight(); y++) {
+					for (int x = 0; x < imagem_negativo.getWidth(); x++) {
+						System.out.print(imagem_negativo.getRGB(y, x));
+					}
+					System.out.println();
+				}*/
+				 
+				//Object i_negativo2 = imagem_negativo;
+				File i_negativo = null;
+				try{
+					//ImageIO.write(imagem_negativo, ".jpg", new File("c:\\lena.jpg"));
+					//i_negativo = (File) ImageIO.createImageOutputStream(i_negativo2);
+					//Icon icon = (Icon) imagem_negativo;
+					//lbl_resultado.setIcon(icon);
+					//lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
+				}catch(Exception e){
+					System.out.println("Erro 2");
+				}
+				//System.out.println(i_negativo);
+				//String caminho = "c:\\lena.jpg";
+				//lbl_resultado.setIcon(new ImageIcon(caminho.toString()));
+				//lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
 				
 			}
 			
@@ -177,7 +198,7 @@ public class Tela extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser img = new JFileChooser(); // Recebe imagem
 				
-				// if para verificar se o arquivo selecionado veio do botão  Abrir
+				// if para verificar se o arquivo selecionado veio do botão  Abrir imagem 1
 				if (img.showOpenDialog(btAbrirImagem1) == JFileChooser.APPROVE_OPTION){
 					
 					imagem1 = img.getSelectedFile(); // Método para passar imagem que foi selecionada
