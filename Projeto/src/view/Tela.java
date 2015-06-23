@@ -1,9 +1,10 @@
-package p_imagens;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -12,10 +13,14 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 
+import modelo.Efeitos;
+import modelo.Imagem;
+
 import java.io.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+import java.awt.image.RGBImageFilter;
 import java.awt.Font;
 
 public class Tela extends JFrame {
@@ -23,8 +28,11 @@ public class Tela extends JFrame {
 	private JPanel painelPrincipal;
 	File imagem1 = null;
 	File imagem2 = null;
+	BufferedImage im1 = null;
+	BufferedImage im2 = null;
 	
-	//OperaçõesMatematicas om = new OperaçõesMatematicas();
+	Efeitos efeitos = new Efeitos();
+	Imagem imag = new Imagem();
 	/**
 	 * Launch the application.
 	 */
@@ -48,6 +56,8 @@ public class Tela extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 609);
 		
+		JLabel lbl_resultado = new JLabel("");
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -59,6 +69,17 @@ public class Tela extends JFrame {
 		
 		JMenuItem mntmNegativo = new JMenuItem("Negativo");
 		mnEfeitos.add(mntmNegativo);
+		mntmNegativo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				BufferedImage imagem_negativo = null;
+				imagem_negativo = efeitos.Negativo(imag.getIm1());
+				
+				lbl_resultado.setIcon(new ImageIcon(imagem_negativo.toString()));
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER); 
+				
+			}
+			
+		});
 		
 		JMenuItem media = new JMenuItem("M\u00E9dia");
 		mnEfeitos.add(media);
@@ -149,7 +170,6 @@ public class Tela extends JFrame {
 		painel1.add(lbl_imagem1);
 		
 		
-		
 		JButton btAbrirImagem1 = new JButton("Abrir Imagem");
 		btAbrirImagem1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -157,8 +177,21 @@ public class Tela extends JFrame {
 				
 				// if para verificar se o arquivo selecionado veio do botão  Abrir
 				if (img.showOpenDialog(btAbrirImagem1) == JFileChooser.APPROVE_OPTION){
+					
 					imagem1 = img.getSelectedFile(); // Método para passar imagem que foi selecionada
-					lbl_imagem1.setIcon(new ImageIcon(imagem1.toString()));
+					im1 = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
+					//String caminho = imagem1.toString();
+					//imagem1 = new File (caminho);
+					//System.out.println(caminho);
+					try{
+						im1 = ImageIO.read(imagem1);
+						System.out.println("ok");
+						
+					}catch(Exception e){
+						System.out.println("Erro");
+					}
+					imag.setIm1(im1);
+					lbl_imagem1.setIcon(new ImageIcon(im1.toString()));
 					lbl_imagem1.setHorizontalAlignment(JLabel.CENTER);
 				}
 			}
@@ -199,10 +232,12 @@ public class Tela extends JFrame {
 		painelPrincipal.add(painel_Resultado);
 		painel_Resultado.setLayout(null);
 		
-		JLabel lbl_resultado = new JLabel("");
+		//lbl_resultado = new JLabel("");
 		lbl_resultado.setBounds(10, 11, 236, 234);
 		painel_Resultado.add(lbl_resultado);
 		
+		
+				
 		JLabel lblNewLabel = new JLabel("Imagem Resultado");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(820, 405, 163, 24);
