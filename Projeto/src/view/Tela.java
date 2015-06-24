@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 import modelo.Efeitos;
 import modelo.Imagem;
+import modelo.Op_Matematicas;
 
 import java.io.*;
 import java.awt.event.ActionListener;
@@ -34,6 +35,7 @@ public class Tela extends JFrame {
 	
 	Efeitos efeitos = new Efeitos();
 	Imagem imag = new Imagem();
+	Op_Matematicas om = new Op_Matematicas();
 	
 	
 	/**
@@ -83,6 +85,15 @@ public class Tela extends JFrame {
 		
 		JMenuItem media = new JMenuItem("M\u00E9dia");
 		mnEfeitos.add(media);
+		media.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int mascara= 3;
+				JOptionPane.showInputDialog("Máscara", mascara);
+				efeitos.media(imag.getIm1(), mascara);
+							
+			}
+			
+		});
 		
 		JMenuItem mediana = new JMenuItem("Mediana");
 		mnEfeitos.add(mediana);
@@ -110,15 +121,43 @@ public class Tela extends JFrame {
 		
 		JMenuItem soma = new JMenuItem("Soma");
 		mnOperaesMatemticas.add(soma);
+		soma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				om.soma(imag.getIm1(), imag.getIm2());
+			}
+			
+		});
 		
 		JMenuItem subtracao = new JMenuItem("Subtra\u00E7\u00E3o");
 		mnOperaesMatemticas.add(subtracao);
+		subtracao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				om.subtracao(imag.getIm1(), imag.getIm2());
+			}
+			
+		});
 		
 		JMenuItem multiplicacao = new JMenuItem("Multiplica\u00E7\u00E3o");
 		mnOperaesMatemticas.add(multiplicacao);
+		multiplicacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				om.multiplicacao(imag.getIm1(), imag.getIm2());
+			}
+			
+		});
 		
 		JMenuItem mntmDiviso = new JMenuItem("Divis\u00E3o");
 		mnOperaesMatemticas.add(mntmDiviso);
+		mntmDiviso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				om.divisao(imag.getIm1(), imag.getIm2());
+			}
+			
+		});
 		
 		JMenu mnOperaesLgicas = new JMenu("Opera\u00E7\u00F5es L\u00F3gicas");
 		menuBar.add(mnOperaesLgicas);
@@ -180,9 +219,7 @@ public class Tela extends JFrame {
 					
 					imagem1 = img.getSelectedFile(); // Método para passar imagem que foi selecionada
 					im1 = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
-					//String caminho = imagem1.toString();
-					//imagem1 = new File (caminho);
-					//System.out.println(caminho);
+					
 					try{
 						im1 = ImageIO.read(imagem1);
 						System.out.println("ok");
@@ -219,6 +256,17 @@ public class Tela extends JFrame {
 				// if para verificar se o arquivo selecionado veio do botão  Abrir
 				if (img2.showOpenDialog(btAbrirImagem2) == JFileChooser.APPROVE_OPTION){
 					imagem2 = img2.getSelectedFile(); // Método para passar imagem que foi selecionada
+					
+					im2 = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
+					
+					try{
+						im2 = ImageIO.read(imagem2);
+						System.out.println("ok");
+						
+					}catch(Exception c){
+						System.out.println("Erro");
+					}
+					imag.setIm2(im2);
 					lbl_imagem2.setIcon(new ImageIcon(imagem2.toString()));
 					lbl_imagem2.setHorizontalAlignment(JLabel.CENTER);
 				}
