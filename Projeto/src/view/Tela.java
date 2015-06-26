@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 import modelo.Efeitos;
 import modelo.Imagem;
+import modelo.Op_Logicas;
 import modelo.Op_Matematicas;
 
 import java.io.*;
@@ -36,7 +37,7 @@ public class Tela extends JFrame {
 	Efeitos efeitos = new Efeitos();
 	Imagem imag = new Imagem();
 	Op_Matematicas om = new Op_Matematicas();
-	
+	Op_Logicas ol = new Op_Logicas();
 	
 	/**
 	 * Launch the application.
@@ -77,8 +78,9 @@ public class Tela extends JFrame {
 		mntmNegativo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 							
-				efeitos.Negativo(imag.getIm1());
-							
+				BufferedImage imagem_negativa = efeitos.Negativo(imag.getIm1());
+				lbl_resultado.setIcon(new ImageIcon(imagem_negativa));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 			}
 			
 		});
@@ -89,7 +91,9 @@ public class Tela extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int mascara= 3;
 				JOptionPane.showInputDialog("Máscara", mascara);
-				efeitos.media(imag.getIm1(), mascara);
+				BufferedImage media = efeitos.media(imag.getIm1(), mascara);
+				lbl_resultado.setIcon(new ImageIcon(media));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 							
 			}
 			
@@ -97,18 +101,70 @@ public class Tela extends JFrame {
 		
 		JMenuItem mediana = new JMenuItem("Mediana");
 		mnEfeitos.add(mediana);
+		mediana.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int mascara= 3;
+				JOptionPane.showInputDialog("Máscara", mascara);
+				BufferedImage mediana = efeitos.mediana(imag.getIm1(), mascara);
+				lbl_resultado.setIcon(new ImageIcon(mediana));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+							
+			}
+			
+		});
 		
 		JMenuItem passa_alta = new JMenuItem("Passa alta");
 		mnEfeitos.add(passa_alta);
+		passa_alta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				BufferedImage passa_alta = efeitos.passa_alta(imag.getIm1());
+				lbl_resultado.setIcon(new ImageIcon(passa_alta));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+							
+			}
+			
+		});
 		
 		JMenuItem passa_baixa = new JMenuItem("Passa baixa");
+		passa_baixa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int a = 1;
+				JOptionPane.showInputDialog("Valor para 'a', sendo a>=1: ", a);
+				BufferedImage passa_baixo = efeitos.passa_baixo(imag.getIm1(),a);
+				lbl_resultado.setIcon(new ImageIcon(passa_baixo));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+							
+			}
+			
+		});
 		mnEfeitos.add(passa_baixa);
 		
 		JMenuItem prewitt = new JMenuItem("Prewitt");
 		mnEfeitos.add(prewitt);
+		prewitt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				BufferedImage prewitt = efeitos.prewitt(imag.getIm1());
+				lbl_resultado.setIcon(new ImageIcon(prewitt));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+							
+			}
+			
+		});
 		
 		JMenuItem sobel = new JMenuItem("Sobel");
 		mnEfeitos.add(sobel);
+		sobel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				BufferedImage sobel = efeitos.prewitt(imag.getIm1());
+				lbl_resultado.setIcon(new ImageIcon(sobel));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+							
+			}
+			
+		});
 		
 		JMenuItem gradiente = new JMenuItem("Gradiente");
 		mnEfeitos.add(gradiente);
@@ -124,7 +180,9 @@ public class Tela extends JFrame {
 		soma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				om.soma(imag.getIm1(), imag.getIm2());
+				BufferedImage soma = om.soma(imag.getIm1(), imag.getIm2());
+				lbl_resultado.setIcon(new ImageIcon(soma));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 			}
 			
 		});
@@ -134,7 +192,9 @@ public class Tela extends JFrame {
 		subtracao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				om.subtracao(imag.getIm1(), imag.getIm2());
+				BufferedImage subtracao = om.subtracao(imag.getIm1(), imag.getIm2());
+				lbl_resultado.setIcon(new ImageIcon(subtracao));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 			}
 			
 		});
@@ -144,7 +204,9 @@ public class Tela extends JFrame {
 		multiplicacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				om.multiplicacao(imag.getIm1(), imag.getIm2());
+				BufferedImage multiplicacao = om.multiplicacao(imag.getIm1(), imag.getIm2());
+				lbl_resultado.setIcon(new ImageIcon(multiplicacao));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 			}
 			
 		});
@@ -154,7 +216,9 @@ public class Tela extends JFrame {
 		mntmDiviso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				om.divisao(imag.getIm1(), imag.getIm2());
+				BufferedImage divisao = om.divisao(imag.getIm1(), imag.getIm2());
+				lbl_resultado.setIcon(new ImageIcon(divisao));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
 			}
 			
 		});
@@ -167,6 +231,15 @@ public class Tela extends JFrame {
 		
 		JMenuItem or = new JMenuItem("Or");
 		mnOperaesLgicas.add(or);
+		or.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				BufferedImage or = ol.logica_or(imag.getIm1(), imag.getIm2());
+				lbl_resultado.setIcon(new ImageIcon(or));		
+				lbl_resultado.setHorizontalAlignment(JLabel.CENTER);
+			}
+			
+		});
 		
 		JMenuItem xor = new JMenuItem("Xor");
 		mnOperaesLgicas.add(xor);
@@ -282,7 +355,7 @@ public class Tela extends JFrame {
 		painel_Resultado.setLayout(null);
 		
 		//lbl_resultado = new JLabel("");
-		lbl_resultado.setBounds(10, 11, 236, 234);
+		lbl_resultado.setBounds(10, 11, 283, 234);
 		painel_Resultado.add(lbl_resultado);
 		
 		
